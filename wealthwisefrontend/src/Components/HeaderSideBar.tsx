@@ -1,6 +1,7 @@
-﻿import React from 'react';
-import SideNavBar from './SideNavBar/SideNavBar';
+﻿// @ts-expect-error suppressing TS1259
+import React from 'react';
 import './HeaderSideBar.tsx.css';
+import SideNavBar from './SideNavBar/SideNavBar';
 interface HeaderSideBarProps {
     children: React.ReactNode;
 }
