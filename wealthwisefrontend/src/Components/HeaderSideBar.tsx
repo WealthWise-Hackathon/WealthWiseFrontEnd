@@ -1,5 +1,5 @@
 ﻿import React from 'react';
-import SideNavBar from './SideNavBar.tsx';
+import SideNavBar from './SideNavBar/SideNavBar.tsx';
 import './HeaderSideBar.tsx.css';
 interface HeaderSideBarProps {
     children: React.ReactNode;
