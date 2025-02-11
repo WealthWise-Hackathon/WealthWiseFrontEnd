@@ -1,5 +1,5 @@
-import * as Helpers from './../../Helpers.ts';
-import { Singleton } from './../../Singleton.ts';
+import * as Helpers from './../../Helpers';
+import { Singleton } from './../../Singleton';
 export class SideNavBarController extends Singleton<SideNavBarController> {
 
     readonly origSidePos: number;
@@ -16,7 +16,7 @@ export class SideNavBarController extends Singleton<SideNavBarController> {
         this.content = document.querySelector(".content") as HTMLElement;
         this.stretchtext = document.querySelector(".toggle-menu-btn div") as HTMLElement;
         this.computedSidebarStyle = window.getComputedStyle(document.querySelector(".sideNavBar") as Element);
-        this.computedContentStyle = window.getComputedStyle(this.sidebar as Element);
+        this.computedContentStyle = window.getComputedStyle(document.querySelector(".content") as Element);
 
         this.origSidePos = Helpers.Style.parse(this.computedSidebarStyle.left)[0] as number;
         this.origContentPos = Helpers.Style.parse(this.computedContentStyle.left)[0] as number;

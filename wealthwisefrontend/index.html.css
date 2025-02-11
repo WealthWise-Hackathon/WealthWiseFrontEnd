@@ -3,3 +3,7 @@
     font-family: Arial, sans-serif;
     display: flex;
 }
+html, body {
+    min-width: 820px;
+    min-height: 550px;
+}

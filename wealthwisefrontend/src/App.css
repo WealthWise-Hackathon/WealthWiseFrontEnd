@@ -4,24 +4,15 @@
     height: 100%;
 }
 
-#root {
+/*#root {
     display: flex;
     flex-direction: column;
     height: 100%;
-}
+}*/
 
-.header {
-    background-color: #444;
-    padding: 1em;
-    text-align: center;
-}
-
-.main-content {
-    display: flex;
+.inner-content {
+    position: relative;
     flex: 1;
-}
-
-.content {
-    flex: 1;
+    /*top: 250px;*/
     padding: 1em;
 }

@@ -1,36 +1,28 @@
+// @ts-expect-error suppressing TS1259
+import React from 'react';
 import './App.css';
-import SideNavBar from './Components/SideNavBar.tsx';
+import HeaderSideBar from './Components/HeaderSideBar';
 
 function App() {
     return (
         <>
-            <header className="header">
-                <h1>WealthWise Financial Advisors</h1>
-            </header>
-
-            <div className="main-content">
-                <div className="sidebar">
-                    <SideNavBar />
-                </div>
-
-                <div className="content">
+            <HeaderSideBar>
+                <div className="inner-content">
                     <h1>Compound interest calculator</h1>
-                    <div className="mortgage-content">
+                    <div className="calculator-content">
                         <p>See if we can help you with your personal finance</p>
-                        <button className="mortgage_button">Check Now</button>
+                        <button className="calculator">Check Now</button>
                         <div style={{ marginBottom: '5em' }}></div>
-                        <p>
-                            lots of text
-                            <div style={{ marginBottom: '10em' }}></div>
-                            more texts
-                            <div style={{ marginBottom: '10em' }}></div>
-                            more!!!!
-                            <div style={{ marginBottom: '50em' }}></div>
-                            even more!!
-                        </p>
+                        <p>lots of text</p>
+                        <div style={{ marginBottom: '10em' }}></div>
+                        <p>more texts</p>
+                        <div style={{ marginBottom: '10em' }}></div>
+                        <p>more!!!!</p>
+                        <div style={{ marginBottom: '50em' }}></div>
+                        <p>even more!!</p>
                     </div>
                 </div>
-            </div>
+            </HeaderSideBar>
         </>
     );
 }
