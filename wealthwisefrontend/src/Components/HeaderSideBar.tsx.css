@@ -11,16 +11,16 @@ header {
 }
 
 .sidebar {
-    position: fixed;
-    /*top: 100px;*/
+    flex: auto;
+    position: relative;
     left: -15px;
 }
 
 .content {
+    flex: 1;
     position: relative;
-    top: 480px;
-    left: 160px;
-    margin-left: -10px;
+    top: 510px;
+    margin-left: 160px;
     padding: 20px;
     z-index: 0;
 }

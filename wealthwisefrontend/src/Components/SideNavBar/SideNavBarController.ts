@@ -1,14 +1,16 @@
 import * as Helpers from './../../Helpers';
 import { Singleton } from './../../Singleton';
-export class SideNavBarController extends Singleton<SideNavBarController> {
 
-    readonly origSidePos: number;
+export class SideNavBarController extends Singleton<SideNavBarController> {
     readonly sidebar: HTMLElement;
     readonly content: HTMLElement;
     readonly stretchtext: HTMLElement;
     readonly computedSidebarStyle: CSSStyleDeclaration;
     readonly computedContentStyle: CSSStyleDeclaration;
+    readonly origSidebarPos: number;
     readonly origContentPos: number;
+    isOpen: boolean = true;
+    smoothSidebar: SmoothSidebar = new SmoothSidebar(0.5, 100);
 
     constructor() {
         super();
@@ -18,27 +20,32 @@ export class SideNavBarController extends Singleton<SideNavBarController> {
         this.computedSidebarStyle = window.getComputedStyle(document.querySelector(".sideNavBar") as Element);
         this.computedContentStyle = window.getComputedStyle(document.querySelector(".content") as Element);
 
-        this.origSidePos = Helpers.Style.parse(this.computedSidebarStyle.left)[0] as number;
+        this.origSidebarPos = Helpers.Style.parse(this.computedSidebarStyle.left)[0] as number;
         this.origContentPos = Helpers.Style.parse(this.computedContentStyle.left)[0] as number;
+
+        this.smoothSidebar.openSidebarPos = this.origSidebarPos;
+        this.smoothSidebar.openContentPos = this.origContentPos;
+
     }
 
     toggleSidebar() {
-        const smoothSidebar: SmoothSidebar = new SmoothSidebar(0.5, 100);
-        const origSidePos = window.getComputedStyle(this.sidebar).left;
-        console.log("sidebar pos = " + origSidePos);
-        if (this.sidebar.style.left === "-135px") {
-            smoothSidebar.open();
+        if (this.isOpen) {
+            this.isOpen = false;
+            this.smoothSidebar.close();
+            
         } else {
-            smoothSidebar.close();
+            this.isOpen = true;
+            this.smoothSidebar.open();
         }
     }
 }
 class SmoothSidebar {
-    
     time: number;
     steps: number;
-    openSidebarPos: number = -15;
+    openSidebarPos: number = 0;
+    openContentPos: number = 0;
     offset: number = -120;
+
     constructor(time: number, steps: number) {
         this.time = time;
         this.steps = steps;
@@ -51,18 +58,28 @@ class SmoothSidebar {
             start: this.openSidebarPos,
             end: this.openSidebarPos
         };
+        const contentPos: { start: number, end: number } = {
+            start: this.openContentPos,
+            end: this.openContentPos
+        }
         switch (action) {
             case SidebarAction.open:
                 sidebarPos.start += this.offset;
+                contentPos.start += this.offset;
                 break;
             case SidebarAction.close:
                 sidebarPos.end += this.offset;
+                contentPos.end += this.offset;
                 break;
+            default:
+                throw new Error("invalid argument error: " + action);
         }
+        
         for (let i = 0; i <= steps; i++) {
             eased = Helpers.Easing.easeOutQuad(i / steps);
             SideNavBarController.getInstance().sidebar.style.left = Helpers.Easing.lerp(sidebarPos.start, sidebarPos.end, eased) + "px";
-            SideNavBarController.getInstance().content.style.marginLeft = Helpers.Easing.lerp(160, 40, eased) + "px";
+            SideNavBarController.getInstance().content.style.left = Helpers.Easing.lerp(contentPos.start, contentPos.end, eased) + "px";
+
             x_scale = 2 * eased - 1;
             x_scale *= action == SidebarAction.open ? 1 : -1;
             SideNavBarController.getInstance().stretchtext.style.transform = "scale(" + x_scale + ",2.5)";
@@ -77,7 +94,6 @@ class SmoothSidebar {
     async open() {
         await this.openClose(this.time, this.steps, SidebarAction.open);
     }
-
 }
 enum SidebarAction {
     open,
