@@ -1,5 +1,5 @@
-import * as Helpers from './../../Helpers';
-import { Singleton } from './../../Singleton';
+import * as Helpers from './../../Definitions/Helpers';
+import { Singleton } from './../../Definitions/Singleton';
 
 export class SideNavBarController extends Singleton<SideNavBarController> {
     readonly sidebar: HTMLElement;
