@@ -1,5 +1,4 @@
-﻿import { useEffect, useState } from 'react';
-import './../../Definitions/Helpers.ts';
+﻿import './../../Definitions/Helpers.ts';
 import "./SideNavBar.tsx.css";
 import { SideNavBarController } from './SideNavBarController';
 
