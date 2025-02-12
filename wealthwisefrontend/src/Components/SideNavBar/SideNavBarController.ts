@@ -1,6 +1,10 @@
+
 import * as Helpers from './../../Definitions/Helpers';
 import { Singleton } from './../../Definitions/Singleton';
 
+/**
+ * Controller class for the side navigation bar.
+ */
 export class SideNavBarController extends Singleton<SideNavBarController> {
     readonly sidebar: HTMLElement;
     readonly content: HTMLElement;
@@ -28,6 +32,9 @@ export class SideNavBarController extends Singleton<SideNavBarController> {
 
     }
 
+    /**
+     * Toggle the sidebar open or closed.
+     */
     toggleSidebar() {
         if (this.isOpen) {
             this.isOpen = false;
@@ -39,6 +46,10 @@ export class SideNavBarController extends Singleton<SideNavBarController> {
         }
     }
 }
+
+/**
+ * Class for animating the sidebar open and closed.
+ */
 class SmoothSidebar {
     time: number;
     steps: number;
@@ -46,14 +57,26 @@ class SmoothSidebar {
     openContentPos: number = 0;
     offset: number = -120;
 
+    /**
+     * 
+     * @param time the time taken to complete the animation in seconds
+     * @param steps the number of steps to take to complete the animation
+     */
     constructor(time: number, steps: number) {
         this.time = time;
         this.steps = steps;
     }
 
+    /**
+     * Open or close the sidebar.
+     * @param time the time in seconds to complete the animation
+     * @param steps the number of steps to take to complete the animation
+     * @param action the action to take, either open or close
+     */
     private async openClose(time: number, steps: number, action: SidebarAction) {
-        let eased;
-        let x_scale;
+        let eased: number;
+        let x_scale: number;
+
         const sidebarPos: { start: number, end: number } = {
             start: this.openSidebarPos,
             end: this.openSidebarPos
@@ -74,7 +97,7 @@ class SmoothSidebar {
             default:
                 throw new Error("invalid argument error: " + action);
         }
-        
+
         for (let i = 0; i <= steps; i++) {
             eased = Helpers.Easing.easeOutQuad(i / steps);
             SideNavBarController.getInstance().sidebar.style.left = Helpers.Easing.lerp(sidebarPos.start, sidebarPos.end, eased) + "px";
@@ -82,7 +105,7 @@ class SmoothSidebar {
 
             x_scale = 2 * eased - 1;
             x_scale *= action == SidebarAction.open ? 1 : -1;
-            SideNavBarController.getInstance().stretchtext.style.transform = "scale(" + x_scale + ",2.5)";
+            SideNavBarController.getInstance().stretchtext.style.transform = `scale(${x_scale}, 2.5)`;
             await Helpers.Time.wait(time / steps);
         }
     }
@@ -96,9 +119,12 @@ class SmoothSidebar {
     }
 }
 enum SidebarAction {
-    open,
-    close
+    open = "open",
+    close = "close"
 }
+
+
+
 
 
 export default SideNavBarController;

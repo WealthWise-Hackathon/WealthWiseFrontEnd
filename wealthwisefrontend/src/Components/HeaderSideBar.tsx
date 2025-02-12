@@ -1,14 +1,19 @@
 ﻿import React from 'react';
 import './HeaderSideBar.tsx.css';
 import SideNavBar from './SideNavBar/SideNavBar';
+
 interface HeaderSideBarProps {
     children: React.ReactNode;
 }
 
 /**
  * Component that allows for the header and sidebar to be displayed on the page.
+ * 
+ * @param children the children to display in the content area.
+ * @returns the header and sidebar with the content.
+ * @usage <HeaderSideBar>...</HeaderSideBar>
  */
-const HeaderSideBar: React.FC<HeaderSideBarProps> = ({ children }) => {
+function HeaderSideBar({ children }: HeaderSideBarProps) {
     return (
         <>
             <header className="header">
@@ -23,7 +28,6 @@ const HeaderSideBar: React.FC<HeaderSideBarProps> = ({ children }) => {
                 {children}
             </div>
         </>
-        
     );
 }
 

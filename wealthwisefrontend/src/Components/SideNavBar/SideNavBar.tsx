@@ -1,20 +1,14 @@
-﻿// @ts-expect-error suppressing TS1259
-import React from 'react';
-
-import { useEffect, useState } from 'react';
+﻿import { useEffect, useState } from 'react';
 import './../../Definitions/Helpers.ts';
 import "./SideNavBar.tsx.css";
 import { SideNavBarController } from './SideNavBarController';
 
+/**
+ * SideNavBar component that displays the side navigation bar.
+ * @returns the side navigation bar.
+ * @usage <SideNavBar />
+ */
 function SideNavBar() {
-    const [sideNavBarController, setSideNavBarController] = useState<SideNavBarController | null>(null);
-
-    useEffect(() => {
-        if (sideNavBarController === null) {
-            setSideNavBarController(new SideNavBarController());
-        }
-    }, [sideNavBarController]);
-
     return (
         <>
             <div className="sideNavBar">
