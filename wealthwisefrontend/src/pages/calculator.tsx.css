@@ -28,7 +28,7 @@ body, html {
 .inner-content {
     position: relative;
     flex: 1;
-    /*top: 250px;*/
+    top: 30px;
     padding: 1em;
 }
 
