@@ -1,10 +1,11 @@
 // @ts-expect-error suppressing TS1259
-import React from 'react';
-import './App.css';
-import HeaderSideBar from './Components/HeaderSideBar';
+import React, { StrictMode } from 'react'
+import { createRoot } from 'react-dom/client'
+import './calculator.tsx.css'
+import HeaderSideBar from '../Components/HeaderSideBar';
 
-function App() {
-    return (
+createRoot(document.getElementById('root')!).render(
+    <StrictMode>
         <>
             <HeaderSideBar>
                 <div className="inner-content">
@@ -24,7 +25,5 @@ function App() {
                 </div>
             </HeaderSideBar>
         </>
-    );
-}
-
-export default App;
+    </StrictMode>
+)
