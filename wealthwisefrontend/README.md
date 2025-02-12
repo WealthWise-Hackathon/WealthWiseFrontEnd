@@ -1,50 +1,26 @@
-# React + TypeScript + Vite
+# IBMHackathon
+### Team 9
+- Precious A (oa287@student.le.ac.uk)
+- Phoenix B (sb1039@student.le.ac.uk)
+- Josh D (jds46@student.le.ac.uk)
+- Simon D (sd611@student.le.ac.uk)
+- Craig L (cl530@student.le.ac.uk)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**How to run:**
+1. The MySQL workbench database may be local so if it does not work connect to your own database by changing these in `application.properties` to your own:
+```java
+spring.datasource.url=
+spring.datasource.username=
+spring.datasource.password=
+``` 
+And also change the database connection by going to database and putting your url, username and password
 
-Currently, two official plugins are available:
+2. Either press the green play button or press shift+f10
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+3. Either use a preexisting login or create on with the register button then login after registering
 
-## Expanding the ESLint configuration
+4. You are on the home page and can now explore all the other pages
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+---
 
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
-
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
-
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+WealthWise is a Financial education platform that helps people learn about effective financial planning , budgeting and prudent investment practices. Our project is a web app that has an integrated AI chatbot that allows users to ask questions and recieve answers based upon their prompts; alongside read through our different educational resources and use our calculator to model their finances.
